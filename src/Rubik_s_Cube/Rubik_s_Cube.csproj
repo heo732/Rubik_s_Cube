@@ -105,8 +105,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Shaders\Shader.frag" />
-    <None Include="Shaders\Shader.vert" />
+    <EmbeddedResource Include="Shaders\Shader.frag" />
+    <EmbeddedResource Include="Shaders\Shader.vert" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
