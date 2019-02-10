@@ -1,0 +1,84 @@
+﻿<Window x:Class="Rubik_s_Cube.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rubik_s_Cube"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"        
+        ResizeMode="NoResize"    
+        WindowStyle="None"
+        WindowState="Maximized"
+        KeyDown="MainWindow_KeyDown">
+
+    <Window.Resources>
+
+
+        <!-- Style for all buttons -->
+        <Style TargetType="Button" x:Key="buttonStyle">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="#7FAA09A0"/>
+            <Setter Property="FontFamily" Value="Calibri"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Foreground" Value="#FFFFFFFF"/>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver"  Value="True">
+                    <Setter Property="Background" Value="#7FFFFFFF" />
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#7F0505FF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <!-- Style for buttons with circle-body -->
+        <Style TargetType="Button" x:Key="buttonStyle_Circle" 
+               BasedOn="{StaticResource buttonStyle}">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <!-- circle -->
+                            <Ellipse Fill="{TemplateBinding Background}" Height="50" Width="50" />
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+
+
+    <Grid>
+
+        <!-- The OpenGL control provides a OpenGL drawing surface. -->
+        <sharpGL:OpenGLControl 
+            OpenGLVersion="OpenGL2_1"
+            Name="openGLControl" OpenGLDraw="openGLControl_OpenGLDraw" 
+            OpenGLInitialized="openGLControl_OpenGLInitialized" Resized="openGLControl_Resized"
+            RenderContextType="FBO" FrameRate="60"/>
+
+
+        <!-- Container for Menu -->
+        <Grid Name="containerMenu" Background="#B2C7BDBD" 
+              Visibility="Hidden" Opacity="50">
+
+            <!-- Main page of Menu -->
+            <DockPanel Name="containerMenu_PageMain">
+                <Button Name="containerMenu_PageMain_buttonUp" DockPanel.Dock="Top" 
+                        Style="{StaticResource buttonStyle_Circle}" Content="ButtonUP"
+                        Click="buttonUp_Click"/>
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+
+</Window>
