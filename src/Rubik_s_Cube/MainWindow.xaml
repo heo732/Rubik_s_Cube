@@ -5,11 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Rubik_s_Cube"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="600" Width="600"
         xmlns:sharpGL="clr-namespace:SharpGL.WPF;assembly=SharpGL.WPF"        
-        ResizeMode="NoResize"    
-        WindowStyle="None"
-        WindowState="Maximized"
+        ResizeMode="CanResize"
         KeyDown="MainWindow_KeyDown">
 
     <Window.Resources>
@@ -56,14 +54,15 @@
 
 
 
-    <Grid>
+    <Grid Name="containerMain">
 
         <!-- The OpenGL control provides a OpenGL drawing surface. -->
         <sharpGL:OpenGLControl 
             OpenGLVersion="OpenGL2_1"
+            RenderContextType="FBO" FrameRate="120"
             Name="openGLControl" OpenGLDraw="openGLControl_OpenGLDraw" 
             OpenGLInitialized="openGLControl_OpenGLInitialized" Resized="openGLControl_Resized"
-            RenderContextType="FBO" FrameRate="60"/>
+            MouseDown="OpenGLControl_MouseDown" />
 
 
         <!-- Container for Menu -->
